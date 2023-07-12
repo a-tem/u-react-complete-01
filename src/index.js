@@ -83,19 +83,28 @@ function Menu() {
 }
 
 function Footer() {
-  //   const hour = new Date().getHours();
-  //   const openHour = 12;
-  //   const closeHour = 22;
-  //   const isOpen = hour >= openHour && hour <= closeHour;
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
 
   //  Note: example of using React without JSX
   //  return React.createElement("footer", null, `We're currently open!`);
 
-  return <footer className="footer">We're currently open!</footer>;
+  return (
+    <footer className="footer">
+      {isOpen && (
+        <div className="order">
+          <p>We're open until {closeHour}:00. Come visit us or order online.</p>
+          <button className="btn">Order</button>
+        </div>
+      )}
+    </footer>
+  );
 }
 
 function Pizza({ data }) {
-  const { name, photoName, price, ingredients, soldOut } = data;
+  const { name, photoName, price, ingredients } = data;
 
   return (
     <li className="pizza">
