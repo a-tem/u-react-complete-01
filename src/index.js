@@ -66,10 +66,17 @@ function Header() {
 }
 
 function Menu() {
+  const { name, ingredients, price, photoName, soldOut } = pizzaData[0];
   return (
     <div className="menu">
       <h2>Our menu</h2>
-      <Pizza />
+      <Pizza
+        name={name}
+        ingredients={ingredients}
+        price={price}
+        image={photoName}
+        soldOut={soldOut}
+      />
     </div>
   );
 }
@@ -86,10 +93,15 @@ function Footer() {
   return <footer className="footer">We're currently open!</footer>;
 }
 
-function Pizza() {
+function Pizza({ name, image, price, ingredients, soldOut }) {
   return (
-    <div>
-      <h3>Pizza!</h3>
+    <div className="pizza">
+      <img src={image} alt={name} />
+      <div>
+        <h3>{name}</h3>
+        <p>{ingredients}</p>
+        <span>{price}</span>
+      </div>
     </div>
   );
 }
