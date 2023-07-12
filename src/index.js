@@ -60,23 +60,24 @@ function App() {
 function Header() {
   return (
     <header className="header">
-      <h1>Fast React Pizza Co.</h1>;
+      <h1>Fast React Pizza Co.</h1>
     </header>
   );
 }
 
 function Menu() {
-  const { name, ingredients, price, photoName, soldOut } = pizzaData[0];
+  const renderedList = (
+    <ul className="pizzas">
+      {pizzaData.map((pizza) => (
+        <Pizza data={pizza} key={pizza.name} />
+      ))}
+    </ul>
+  );
+
   return (
     <div className="menu">
       <h2>Our menu</h2>
-      <Pizza
-        name={name}
-        ingredients={ingredients}
-        price={price}
-        image={photoName}
-        soldOut={soldOut}
-      />
+      {renderedList}
     </div>
   );
 }
@@ -93,16 +94,18 @@ function Footer() {
   return <footer className="footer">We're currently open!</footer>;
 }
 
-function Pizza({ name, image, price, ingredients, soldOut }) {
+function Pizza({ data }) {
+  const { name, photoName, price, ingredients, soldOut } = data;
+
   return (
-    <div className="pizza">
-      <img src={image} alt={name} />
+    <li className="pizza">
+      <img src={photoName} alt={name} />
       <div>
         <h3>{name}</h3>
         <p>{ingredients}</p>
         <span>{price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
