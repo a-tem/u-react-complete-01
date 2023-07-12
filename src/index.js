@@ -104,15 +104,15 @@ function Footer() {
 }
 
 function Pizza({ data }) {
-  const { name, photoName, price, ingredients } = data;
+  const { name, photoName, price, ingredients, soldOut } = data;
 
   return (
-    <li className="pizza">
+    <li className={`pizza ${soldOut && "sold-out"}`}>
       <img src={photoName} alt={name} />
       <div>
         <h3>{name}</h3>
         <p>{ingredients}</p>
-        <span>{price}</span>
+        {soldOut ? <span>SOLD OUT</span> : <span>{price}</span>}
       </div>
     </li>
   );
